@@ -184,3 +184,27 @@ jobs:
           echo "Linting: ${{ needs.linting.result }}"
           echo "Deploy Simulation: ${{ needs.deploy-simulation.result }}"
           echo "================================================"
+
+      - name: Send Telegram notification
+        if: always()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+            ${{ env.STATUS }}
+            
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+            
+            ${{ env.MESSAGE }}
+            
+            📊 Pipeline Results:
+            • Tests: ${{ needs.tests.result }}
+            • Static Analysis: ${{ needs.static-analysis.result }}
+            • Linting: ${{ needs.linting.result }}
+            • Deploy: ${{ needs.deploy-simulation.result }}
+            
+            🔗 Details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
