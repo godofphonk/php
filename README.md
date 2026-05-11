@@ -45,3 +45,5 @@ Laravel приложение с автоматизированным CI/CD па�
 ### `.env.prod` (Production)
 ### `.env.ci` (CI Pipeline)
 
+![](./image.png)
+![](./image-1.png)
