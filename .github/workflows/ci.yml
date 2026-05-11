@@ -163,7 +163,7 @@ jobs:
     steps:
       - name: Prepare notification
         run: |
-          if [[ "${{ needs.tests.result }}" == "success" ]] && [[ "${{ needs.static-analysis.result }}" == "success" ]] && [[ "${{ needs.linting.result }}" == "success" ]]; then
+          if [[ "${{ needs.tests.result }}" == "success" ]] && [[ "${{ needs.static-analysis.result }}" == "success" ]] && [[ "${{ needs.linting.result }}" == "success" ]] && [[ "${{ needs.deploy-simulation.result }}" == "success" || "${{ needs.deploy-simulation.result }}" == "skipped" ]]; then
             echo "STATUS=✅ SUCCESS" >> $GITHUB_ENV
             echo "MESSAGE=All pipeline steps completed successfully!" >> $GITHUB_ENV
           else
