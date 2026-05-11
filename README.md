@@ -47,3 +47,4 @@ Laravel приложение с автоматизированным CI/CD па�
 
 ![](./image.png)
 ![](./image-1.png)
+![](./image-2.png)
